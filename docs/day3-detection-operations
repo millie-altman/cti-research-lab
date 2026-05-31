@@ -1,0 +1,48 @@
+# Day 3: Telemetry Enhancement & Adversary Simulation
+
+---
+
+## 1. Bridging the Visibility Gap (Sysmon Integration)
+
+Initially, the Wazuh manager was only receiving standard Windows security logs, which lacked the granular detail needed for deep forensic analysis.
+- **The Problem:** Standard logging didn't capture specific network handshakes or process parent-child relationships.
+- **The Fix:** Modified the Windows Agent ossec.conf to explicitly monitor the Microsoft-Windows-Sysmon/Operational event channel.
+- **Verification:** Confirmed real-time ingestion of Sysmon Event ID 3 (Network Connections) and Event ID 1 (Process Creation).
+
+### Evidence
+- **Ossec Configuration Change** ![Ossec Configuration Change](../images/day3-ossec-config-change.png)
+- **Sysmon Telemetry** ![Sysmon Telemetry](../images/day3-sysmon-telemetry-wazuh.png)
+
+---
+
+## 2. Attack Simulation: Reconnaissance (Nmap)
+
+To test the newly established telemetry, I conducted an active reconnaissance scan from the Kali Linux "Attacker" node. 
+- **Target:** Windows 10 Workstation (192.168.22.131)
+- **Command:** nmap -A -T4 192.168.22.131
+- **Result:** The scan returned a "Filtered" status for all 1000 ports, verifiying that host-based hardening through the Windows Defender Firewall was successfully dropping unsolicited traffic.
+
+### Evidence
+- **Nmap Terminal Output** ![Nmap Terminal Output](../images/day3-nmap-terminal-output.png)
+
+---
+
+## 3. SOC Analysis & Detection
+
+Despite the firewall filtering the traffic, the SIEM successfully captured the "noise" created by the attempt.
+
+- **Key Alerts Triggered:**
+    - **Rule 92031:** Discovery activity executed (Nmap Scripting Engine detection).
+    - **Rule 92032:** Suspicious Windows cmd shell execution
+    - **Sysmon Event ID 3:** Network connections originating from the Kali IP
+ 
+### Evidence
+  - **Wazuh Nmap Alerts** ![Wazuh Nmap Alerts](../images/day3-wazuh-nmap-alerts.png)
+ 
+  ---
+
+## Lessons Learned
+
+**1. Configuration over Installation:** Simply installing a tool (Sysmon) isn't enough; the data pipeline (Wazuh Agent) must be manually tuned to listen to the correct channels.
+
+**2. Defense-in-Depth:** Seeing "Filtered" ports in Nmap while still seeing "Discovery" alerts in Wazuh proves that a multi-layered security stack works. The firewall blocked the access, while the SIEM will still log the attempt. 
