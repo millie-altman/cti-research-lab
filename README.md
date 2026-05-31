@@ -76,7 +76,7 @@ Created a scoped ICMPv4 inbound firewall rule (`Allow_Lab_Ping`) on the Windows 
 | ossec.conf — Sysmon channel configuration | ![OSSEC Config](./images/day3-ossec-config-change.png) |
 | Sysmon telemetry confirmed in Wazuh | ![Sysmon](./images/day3-sysmon-telemetry-wazuh.png) |
 
-Full documentation: [`docs/Day1_Foundation.md`](./docs/Day1_Foundation.md) | [`docs/Day2_Attacker_Setup.md`](./docs/Day2_Attacker_Setup.md)
+Full documentation: [`docs/Day1_Foundation.md`](./docs/day1-foundation.md) | [`docs/Day2_Attacker_Setup.md`](./docs/day2-attacker-setup.md)
 
 ---
 
@@ -106,7 +106,7 @@ Validate the detection pipeline against realistic adversary activity without act
 | Nmap terminal — all ports filtered | ![Nmap](./images/day3-nmap-terminal-output.png) |
 | Wazuh — Rules 92031 and 92032 | ![Alerts](./images/day3-wazuh-nmap-alerts.png) |
 
-Full documentation: [`docs/Day3_Detection_Operations.md`](./docs/Day3_Detection_Operations.md)
+Full documentation: [`docs/Day3_Detection_Operations.md`](./docs/day3-detection-operations.md)
 
 ---
 
@@ -129,7 +129,7 @@ Invoke-AtomicTest T1053.005 -TestNumbers 1
 
 **Outcome:** Two scheduled persistence tasks successfully created — `T1053_005_OnLogon` (executes at user logon) and `T1053_005_OnStartup` (executes at system startup).
 
-**Forensic analysis:** Queried Wazuh Threat Hunting for the preceding 15-minute window and recovered the Sysmon EID 1 process creation event showing `cmd.exe` spawning `schtasks.exe`. The raw JSON payload captured the full command-line arguments used to register both tasks, including triggers and actions — providing complete forensic reconstruction of the persistence mechanism.
+**Forensic analysis:** Queried Wazuh Threat Hunting for the preceding 15-minute window and recovered the Sysmon EID 1 process creation event showing `cmd.exe` spawning `schtasks.exe`. The raw JSON payload captured the full command-line arguments used to register both tasks, including triggers and actions, providing a complete forensic reconstruction of the persistence mechanism.
 
 **Key artifacts recovered:**
 
@@ -148,7 +148,7 @@ Invoke-AtomicTest T1053.005 -TestNumbers 1
 | Wazuh JSON — schtasks.exe process tree and full cmdline | ![JSON](./images/day4-wazuh-json-payload.png) |
 | Cleanup — persistence tasks evicted | ![Cleanup](./images/day4-atomic-task-cleanup.png) |
 
-Full documentation: [`docs/Day4_Adversary_Simulation.md`](./docs/Day4_Adversary_Simulation.md)
+Full documentation: [`docs/Day4_Adversary_Simulation.md`](./docs/day4-adversary-simulation.md)
 
 ---
 
@@ -220,7 +220,7 @@ powershell.exe -ExecutionPolicy Bypass -File C:\Windows\Temp\malicious_script.ps
 | PowerShell execution of blacklisted indicator | ![PS](./images/day5-powershell-command.png) |
 | Wazuh — Rule 100050, Level 12, confirmed detection | ![Alert](./images/day5-cti-alert-dashboard.png) |
 
-Full documentation: [`docs/Day5_Threat_Intelligence_Enrichment.md`](./docs/Day5_Threat_Intelligence_Enrichment.md)
+Full documentation: [`docs/Day5_Threat_Intelligence_Enrichment.md`](./docs/day5-threat-intelligence-enrichment.md)
 
 ---
 
@@ -271,7 +271,7 @@ ATT&CK Navigator layer constructed to visualize validated detection coverage aga
 | MITRE ATT&CK — APT29 T1053.005 | ![T1053](./images/day6-mitre-apt29-t1053-osint.png) |
 | Wazuh — Rule 100050 forensic telemetry | ![Forensic](./images/day6-wazuh-forensic-clues.png) |
 
-Full documentation: [`docs/Day6_Adversary_Profiling_OSINT.md`](./docs/Day6_Adversary_Profiling_OSINT.md)
+Full documentation: [`docs/Day6_Adversary_Profiling_OSINT.md`](./docs/day6-adversary-profiling_OSINT.md)
 
 ---
 
