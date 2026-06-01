@@ -1,6 +1,15 @@
 # CTI Research Lab
 
 **Analyst:** Millie Altman 
+
+![Purple Team](https://img.shields.io/badge/Focus-Purple%20Team%20Research-darkred)
+![MITRE ATT&CK](https://img.shields.io/badge/Framework-MITRE%20ATT%26CK-red)
+![Diamond Model](https://img.shields.io/badge/Framework-Diamond%20Model-blue)
+![Wazuh](https://img.shields.io/badge/Tool-Wazuh%20SIEM-blue)
+![Sysmon](https://img.shields.io/badge/Tool-Sysmon-lightgrey)
+![Atomic Red Team](https://img.shields.io/badge/Tool-Atomic%20Red%20Team-orange)
+![TLP:CLEAR](https://img.shields.io/badge/TLP-CLEAR-white)
+
 **Classification:** UNCLASSIFIED // FOR PORTFOLIO USE  
 **Environment Type:** Purple Team Research Lab  
 **Frameworks:** MITRE ATT&CK | Diamond Model  
